@@ -47,9 +47,9 @@ class FileVideoStream:
 				if not grabbed:
 					self.stop()
 					return
-
+				frame_no = self.stream.get(cv2.CAP_PROP_POS_FRAMES)
 				# add the frame to the queue
-				self.Q.put(frame)
+				self.Q.put((int(frame_no), frame))
 
 	def read(self):
 		# return next frame in the queue
